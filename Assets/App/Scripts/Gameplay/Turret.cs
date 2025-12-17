@@ -23,6 +23,9 @@ public class Turret : MonoBehaviour
     [SerializeField, Range(0f, 5f)] private float fireRate = 1f;
     private float fireCountdown = 0f;
 
+    [TitleGroup("Sound")]
+    [SerializeField, Required] private SoundData canonSFX;
+
     private Transform target;
 
     private void Start()
@@ -84,6 +87,8 @@ public class Turret : MonoBehaviour
         {
             bullet.Seek(target);
         }
+
+        AudioManager.Instance.PlayClipAt(canonSFX, firePoint.position);
 
         shootFeedback?.PlayFeedbacks();
     }
