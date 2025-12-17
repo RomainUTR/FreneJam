@@ -21,6 +21,7 @@ public class TowerBuilder : MonoBehaviour
     [TabGroup("Visual"), SerializeField, Required] private Material invalidMaterial;
     [TabGroup("Visual"), SerializeField, Required] private TMP_Text builderButtonText;
     [TabGroup("Visual"), SerializeField, Required] private Button builderButton;
+    [TabGroup("Visual"), SerializeField, Required] private TowerTooltip tooltip;
 
     private int currentTowerCount = 0;
     private bool isBuilding = false;
@@ -108,6 +109,7 @@ public class TowerBuilder : MonoBehaviour
                         selectedTurret = newTurret;
                         selectedTurret.SetSelected(true);
 
+                        tooltip.SetTarget(selectedTurret);
                         Debug.Log("Selection : " + selectedTurret.name);
                     }
                 }
@@ -117,6 +119,7 @@ public class TowerBuilder : MonoBehaviour
                     {
                         selectedTurret.SetSelected(false);
                         selectedTurret = null;
+                        tooltip.Hide();
                     }
                 }
             }

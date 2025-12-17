@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class Turret : MonoBehaviour
 
     [TitleGroup("Visual")]
     [SerializeField, Required] private GameObject selectionRing;
+    [SerializeField, Required] private MMF_Player shootFeedback;
 
     [TitleGroup("Bullet Settings")]
     [SerializeField, Range(0f, 5f)] private float fireRate = 1f;
@@ -82,6 +84,8 @@ public class Turret : MonoBehaviour
         {
             bullet.Seek(target);
         }
+
+        shootFeedback?.PlayFeedbacks();
     }
 
     public void SetSelected(bool isSelected)
