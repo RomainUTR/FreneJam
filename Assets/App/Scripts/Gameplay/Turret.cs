@@ -14,6 +14,9 @@ public class Turret : MonoBehaviour
     [SerializeField, Required] private GameObject bulletPrefab;
     [SerializeField, Required] private Transform firePoint;
 
+    [TitleGroup("Visual")]
+    [SerializeField, Required] private GameObject selectionRing;
+
     [TitleGroup("Bullet Settings")]
     [SerializeField, Range(0f, 5f)] private float fireRate = 1f;
     private float fireCountdown = 0f;
@@ -78,6 +81,14 @@ public class Turret : MonoBehaviour
         if (bullet != null)
         {
             bullet.Seek(target);
+        }
+    }
+
+    public void SetSelected(bool isSelected)
+    {
+        if (selectionRing != null)
+        {
+            selectionRing.SetActive(isSelected);
         }
     }
 

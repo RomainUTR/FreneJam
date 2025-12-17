@@ -27,6 +27,7 @@ public class TowerBuilder : MonoBehaviour
     private GameObject currentGhost;
     private Renderer[] ghostRenderers;
     private bool canBuildLocation = false;
+    private Turret selectedTurret;
 
     void Start()
     {
@@ -95,11 +96,28 @@ public class TowerBuilder : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit, 1000f, towerLayer))
                 {
-                    //GameObject.clickedTower = hit.collider.gameObject;
-                    Debug.Log("Tour sélectionnée");
-                } else
+                    Turret newTurret = hit.collider.GetComponentInParent<Turret>();
+
+                    if (newTurret != null)
+                    {
+                        if (selectedTurret != null)
+                        {
+                            selectedTurret.SetSelected(false);
+                        }
+
+                        selectedTurret = newTurret;
+                        selectedTurret.SetSelected(true);
+
+                        Debug.Log("Selection : " + selectedTurret.name);
+                    }
+                }
+                else
                 {
-                    Debug.Log("Rien n'a été sélectionné");
+                    if (selectedTurret != null)
+                    {
+                        selectedTurret.SetSelected(false);
+                        selectedTurret = null;
+                    }
                 }
             }
         }
@@ -135,7 +153,8 @@ public class TowerBuilder : MonoBehaviour
             t.gameObject.layer = towerLayerIndex;
         }
 
-        builderButtonText.text = "Build Tower";
+        currentTowerCount++;
+        builderButtonText.text = "Build Tower : " + currentTowerCount + "/" + maxTowers;
 
         StopBuilding();
     }
