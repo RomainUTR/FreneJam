@@ -11487,7 +11487,7 @@ MonoBehaviour:
   - {fileID: 1032302479834095422, guid: 2247fdb8bd535f84f91433aafd30431b, type: 3}
   - {fileID: 3738960037533302608, guid: ac95c69447e2e75408014e082342133f, type: 3}
   - {fileID: 6460418939682131347, guid: a00c957ff99ed0f46a6a2759adbb4dde, type: 3}
-  timeBetweenWaves: 5
+  timeBetweenWaves: 10
   countdown: 2
   waveIndex: 0
 --- !u!1 &1328498818
@@ -14051,7 +14051,10 @@ MonoBehaviour:
     m_Bits: 8
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 209
+    m_Bits: 721
+  towerLayer:
+    serializedVersion: 2
+    m_Bits: 512
   towerPrefab: {fileID: 9066334399141084429, guid: 6015033d92cc9724e9fbc7b80a5ceba0, type: 3}
   ghostPrefab: {fileID: 3139005858267469811, guid: 768a98d9e40bbe545b2964d912b26dbd, type: 3}
   validMaterial: {fileID: 2100000, guid: e7072609d6cf7654d9685e97101b1876, type: 2}

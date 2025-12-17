@@ -13,6 +13,7 @@ public class TowerBuilder : MonoBehaviour
     [TabGroup("Configuration"), SerializeField, Required] private Camera mainCamera;
     [TabGroup("Configuration"), SerializeField, Required] private LayerMask groundLayer;
     [TabGroup("Configuration"), SerializeField, Required] private LayerMask obstacleLayer;
+    [TabGroup("Configuration"), SerializeField, Required] private LayerMask towerLayer;
 
     [TabGroup("Visual"), SerializeField, Required] private GameObject towerPrefab;
     [TabGroup("Visual"), SerializeField, Required] private GameObject ghostPrefab;
@@ -41,49 +42,66 @@ public class TowerBuilder : MonoBehaviour
 
     void Update()
     {
-        if (isBuilding == false) return;
-
-        if (Input.GetMouseButtonDown(1))
+        if (isBuilding)
         {
-            StopBuilding();
-            return;
-        }
-
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 1000f, groundLayer))
-        {
-            currentGhost.SetActive(true);
-
-            float x = Mathf.Floor(hit.point.x) + gridOffset.x;
-            float z = Mathf.Floor(hit.point.z) + gridOffset.z;
-            float y = hit.point.y;
-
-            Vector3 finalPos = new Vector3(x, y, z);
-            currentGhost.transform.position = finalPos;
-
-            if (Physics.CheckSphere(finalPos + Vector3.up * 0.5f, 0.4f, obstacleLayer))
+            if (Input.GetMouseButtonDown(1))
             {
-                canBuildLocation = false;
-                UpdateGhostColor(invalidMaterial);
+                StopBuilding();
+                return;
+            }
+
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 1000f, groundLayer))
+            {
+                currentGhost.SetActive(true);
+                
+                float x = Mathf.Floor(hit.point.x) + gridOffset.x;
+                float z = Mathf.Floor(hit.point.z) + gridOffset.z;
+                float y = hit.point.y;
+
+                Vector3 finalPosition = new Vector3(x, y, z);
+                currentGhost.transform.position = finalPosition;
+
+                if (Physics.CheckSphere(finalPosition + Vector3.up * 0.5f, 0.4f, obstacleLayer))
+                {
+                    canBuildLocation = false;
+                    UpdateGhostColor(invalidMaterial);
+                } else
+                {
+                    canBuildLocation = true;
+                    UpdateGhostColor(validMaterial);
+                }
+
+                if (Input.GetMouseButtonDown(0) && canBuildLocation)
+                {
+                    if (EventSystem.current.IsPointerOverGameObject()) return;
+                    BuildTower(finalPosition);
+                }
             }
             else
             {
-                canBuildLocation = true;
-                UpdateGhostColor(validMaterial);
+                currentGhost.SetActive(false);
             }
-
-            if (Input.GetMouseButtonDown(0) && canBuildLocation)
+        } else
+        {
+            if (Input.GetMouseButtonDown(0))
             {
                 if (EventSystem.current.IsPointerOverGameObject()) return;
 
-                BuildTower(finalPos);
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, 1000f, towerLayer))
+                {
+                    //GameObject.clickedTower = hit.collider.gameObject;
+                    Debug.Log("Tour sélectionnée");
+                } else
+                {
+                    Debug.Log("Rien n'a été sélectionné");
+                }
             }
-        }
-        else
-        {
-            currentGhost.SetActive(false);
         }
     }
 
@@ -109,11 +127,15 @@ public class TowerBuilder : MonoBehaviour
     {
         GameObject newTower = Instantiate(towerPrefab, pos, Quaternion.identity);
 
-        newTower.layer = LayerMask.NameToLayer("Default");
-        foreach (Transform t in newTower.transform) t.gameObject.layer = LayerMask.NameToLayer("Default");
+        int towerLayerIndex = LayerMask.NameToLayer("Tower");
+        newTower.layer = towerLayerIndex;
 
-        currentTowerCount++;
-        builderButtonText.text = "Build Tower : " + currentTowerCount + "/" + maxTowers;
+        foreach (Transform t in newTower.transform)
+        {
+            t.gameObject.layer = towerLayerIndex;
+        }
+
+        builderButtonText.text = "Build Tower";
 
         StopBuilding();
     }
