@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         target = Waypoints.points[0];
+        speed = speed * Random.Range(0.85f, 1.15f);
     }
 
     private void Update()
