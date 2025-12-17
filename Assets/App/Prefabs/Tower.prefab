@@ -138,7 +138,7 @@ MonoBehaviour:
   partToRotate: {fileID: 6935911376128594112}
   bulletPrefab: {fileID: 6373272512892882865, guid: 2109ac4cdabae574ba3a42b351fe0b93, type: 3}
   firePoint: {fileID: 3020413370783257558}
-  fireRate: 2
+  fireRate: 1
 --- !u!1001 &74897756029049630
 PrefabInstance:
   m_ObjectHideFlags: 0

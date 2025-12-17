@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 6147960713188404849, guid: b278717f6e67ecf4d9a4f6c549816ed0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7752684255665969617, guid: b278717f6e67ecf4d9a4f6c549816ed0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -137,13 +141,25 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7560818172847208770, guid: 84db717a8ae9a474fba3dbf2e079477a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 84db717a8ae9a474fba3dbf2e079477a, type: 3}
       propertyPath: m_Name
-      value: Enemy1
+      value: Enemy_Tank
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 84db717a8ae9a474fba3dbf2e079477a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 84db717a8ae9a474fba3dbf2e079477a, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598419493678936200, guid: 84db717a8ae9a474fba3dbf2e079477a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -158,6 +174,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 84db717a8ae9a474fba3dbf2e079477a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 435152547870865349}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 84db717a8ae9a474fba3dbf2e079477a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4605638255417421117}
   m_SourcePrefab: {fileID: 100100000, guid: 84db717a8ae9a474fba3dbf2e079477a, type: 3}
 --- !u!1 &8124920359326448168 stripped
 GameObject:
@@ -176,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fffba908733d2c4f88ebfbfc1f96149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  settings: {fileID: 11400000, guid: 4b6e3b27c2e0afe41b9a5a0074b1b5ea, type: 2}
 --- !u!114 &435152547870865349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,10 +208,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777a9cac4ce1e4a4a879dfe6dde3f818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 80
+  settings: {fileID: 11400000, guid: 4b6e3b27c2e0afe41b9a5a0074b1b5ea, type: 2}
   healthBar: {fileID: 7549962886618048972}
   colorFull: {r: 0, g: 1, b: 0, a: 1}
   colorLow: {r: 1, g: 0, b: 0, a: 1}
+--- !u!136 &-4605638255417421117
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8124920359326448168}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!4 &8902020696118239378 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 84db717a8ae9a474fba3dbf2e079477a, type: 3}

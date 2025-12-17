@@ -1,8 +1,9 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField, Range(0f, 20f)] private float speed = 10f;
+    [SerializeField, Required, InlineEditor] private EnemySettings settings;
 
     private Transform target;
     private int wavepointIndex = 0;
@@ -10,13 +11,12 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         target = Waypoints.points[0];
-        speed = speed * Random.Range(0.85f, 1.15f);
     }
 
     private void Update()
     {
         Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        transform.Translate(dir.normalized * settings.speed * Time.deltaTime, Space.World);
 
         if (Vector3.Distance(transform.position, target.position) <= 0.2f)
         {

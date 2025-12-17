@@ -5,7 +5,7 @@ using Shapes;
 public class Enemy : MonoBehaviour
 {
     [TitleGroup("Stats")]
-    [SerializeField, Range(0f, 200f)] private float startHealth = 100f;
+    [SerializeField, Required, InlineEditor] private EnemySettings settings;
     private float health;
 
     [TitleGroup("Shapes Interface")]
@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        health = startHealth;
+        health = settings.startHealth;
 
         if (healthBar != null)
         {
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
         
         if (healthBar != null)
         {
-            float pct = health / startHealth;
+            float pct = health / settings.startHealth;
             healthBar.Width = maxBarWidth * Mathf.Max(0, pct);
             healthBar.Color = Color.Lerp(colorLow, colorFull, pct);
         }
@@ -46,5 +46,21 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    public void Heal(float amount)
+    {
+        health += amount;
+        if (health > settings.startHealth)
+        {
+            health = settings.startHealth;
+        }
+
+        if (healthBar != null)
+        {
+            float pct = health / settings.startHealth;
+            healthBar.Width = maxBarWidth * Mathf.Max(0, pct);
+            healthBar.Color = Color.Lerp(colorLow, colorFull, pct);
+        }
     }
 }

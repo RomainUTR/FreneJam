@@ -13,7 +13,6 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField, Range(0f, 10f)] private float timeBetweenWaves = 5f;
     [SerializeField, Range(0f, 5f)] private float countdown = 2f;
     [SerializeField] private int waveIndex = 0;
-    private int mobSpawnCount = 0;
 
     private void Update()
     {
@@ -43,7 +42,5 @@ public class WaveSpawner : MonoBehaviour
     {
         int i = Random.Range(0, enemyPrefabs.Length);
         Instantiate(enemyPrefabs[i], spawnPoint.position, spawnPoint.rotation);
-        mobSpawnCount++;
-        Debug.Log("Mob count : " +  mobSpawnCount);
     }
 }
