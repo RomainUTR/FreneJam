@@ -10,6 +10,7 @@ public class TowerBuilder : MonoBehaviour
     [SerializeField, Range(0,10)] private int maxTowers = 5;
     [SerializeField] private Vector3 gridOffset = new Vector3(0.5f, 0, 0.5f);
     [SerializeField, Range(0,100)] private int towerCost = 20;
+    [SerializeField, Range(0,100)] private int towerUpgradeCost = 100;
 
     [TabGroup("Configuration"), SerializeField, Required] private Camera mainCamera;
     [TabGroup("Configuration"), SerializeField, Required] private LayerMask groundLayer;
@@ -22,6 +23,7 @@ public class TowerBuilder : MonoBehaviour
     [TabGroup("Visual"), SerializeField, Required] private Material invalidMaterial;
     [TabGroup("Visual"), SerializeField, Required] private TMP_Text builderButtonText;
     [TabGroup("Visual"), SerializeField, Required] private Button builderButton;
+    [TabGroup("Visual"), SerializeField, Required] private Button upgradeButton;
     [TabGroup("Visual"), SerializeField, Required] private TowerTooltip tooltip;
 
     private int currentTowerCount = 0;
@@ -177,5 +179,13 @@ public class TowerBuilder : MonoBehaviour
     void UpdateGhostColor(Material mat)
     {
         foreach (Renderer r in ghostRenderers) r.material = mat;
+    }
+
+    public void UpgradeSelectedTurret()
+    {
+        if (selectedTurret != null)
+        {
+            
+        }
     }
 }

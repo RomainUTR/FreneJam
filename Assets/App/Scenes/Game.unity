@@ -15061,6 +15061,7 @@ MonoBehaviour:
   maxTowers: 5
   gridOffset: {x: 0.5, y: 0, z: 0.5}
   towerCost: 30
+  towerUpgradeCost: 100
   mainCamera: {fileID: 1126418825}
   groundLayer:
     serializedVersion: 2
@@ -15077,6 +15078,7 @@ MonoBehaviour:
   invalidMaterial: {fileID: 2100000, guid: 80e4bb9ac2ac6a84caa89834c5c83a1a, type: 2}
   builderButtonText: {fileID: 556553603}
   builderButton: {fileID: 427763586}
+  upgradeButton: {fileID: 1785880232}
   tooltip: {fileID: 1779835459}
 --- !u!4 &1605890261
 Transform:
