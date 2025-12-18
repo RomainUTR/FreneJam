@@ -24,7 +24,7 @@ public class Turret : MonoBehaviour
     private float fireCountdown = 0f;
 
     [TitleGroup("Sound")]
-    [SerializeField, Required] private SoundData canonSFX;
+    [SerializeField, Required, InlineEditor] private SoundData canonSFX;
 
     private Transform target;
 

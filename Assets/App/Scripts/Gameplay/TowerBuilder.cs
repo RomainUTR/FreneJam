@@ -9,6 +9,7 @@ public class TowerBuilder : MonoBehaviour
     [TitleGroup("General")]
     [SerializeField, Range(0,10)] private int maxTowers = 5;
     [SerializeField] private Vector3 gridOffset = new Vector3(0.5f, 0, 0.5f);
+    [SerializeField, Range(0,100)] private int towerCost = 20;
 
     [TabGroup("Configuration"), SerializeField, Required] private Camera mainCamera;
     [TabGroup("Configuration"), SerializeField, Required] private LayerMask groundLayer;
@@ -38,12 +39,20 @@ public class TowerBuilder : MonoBehaviour
         foreach (Collider c in currentGhost.GetComponentsInChildren<Collider>()) Destroy(c);
 
         currentGhost.SetActive(false);
-        builderButton.interactable = true;
+        builderButton.interactable = false;
         builderButtonText.text = "Build Tower : " + currentTowerCount + "/" + maxTowers;
     }
 
     void Update()
     {
+        if (Economy.gold >= towerCost && currentTowerCount < maxTowers)
+        {
+            builderButton.interactable = true;
+        } else
+        {
+            builderButton.interactable = false;
+        }
+
         if (isBuilding)
         {
             if (Input.GetMouseButtonDown(1))
@@ -155,6 +164,9 @@ public class TowerBuilder : MonoBehaviour
         {
             t.gameObject.layer = towerLayerIndex;
         }
+
+        Economy.gold -= towerCost;
+        UIManager.Instance.UpdateUI();
 
         currentTowerCount++;
         builderButtonText.text = "Build Tower : " + currentTowerCount + "/" + maxTowers;

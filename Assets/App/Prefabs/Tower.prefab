@@ -655,7 +655,7 @@ MonoBehaviour:
   firePoint: {fileID: 3020413370783257558}
   selectionRing: {fileID: 5090051007417268531}
   shootFeedback: {fileID: 1116014035822572019}
-  fireRate: 1
+  fireRate: 1.5
   canonSFX: {fileID: 11400000, guid: bed49358163f7d446be3289c55e45aa4, type: 2}
 --- !u!1001 &74897756029049630
 PrefabInstance:

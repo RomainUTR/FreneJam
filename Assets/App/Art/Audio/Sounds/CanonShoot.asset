@@ -15,4 +15,5 @@ MonoBehaviour:
   volumeMultiplier: 1
   pitch: 1
   spatialBlend: 1
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: 57b2cee992a3d894ca5ee94efbaa12ac, type: 3}

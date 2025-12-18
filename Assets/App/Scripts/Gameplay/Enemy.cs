@@ -46,6 +46,8 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        Economy.gold += settings.coinPerKill;
+        UIManager.Instance.UpdateUI();
     }
 
     public void Heal(float amount)
