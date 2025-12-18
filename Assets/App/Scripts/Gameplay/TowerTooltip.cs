@@ -16,6 +16,18 @@ public class TowerTooltip : MonoBehaviour
         upgradeButton.interactable = false;
     }
 
+
+    private void Update()
+    {
+        if (Economy.gold >= 100)
+        {
+            upgradeButton.interactable = true;
+        }
+        else
+        {
+            upgradeButton.interactable = false;
+        }
+    }
     public void SetTarget(Turret _target)
     {
         target = _target;
@@ -31,14 +43,6 @@ public class TowerTooltip : MonoBehaviour
 
     public void Upgrade()
     {
-        if (Economy.gold >= 100)
-        {
-            upgradeButton.interactable = true;
-        } else
-        {
-            upgradeButton.interactable = false;
-        }
-
         if (target != null)
         {
             Debug.Log("Upgrade");
