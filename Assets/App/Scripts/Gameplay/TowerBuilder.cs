@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
+using MoreMountains.Feedbacks;
 
 public class TowerBuilder : MonoBehaviour
 {
@@ -172,6 +173,8 @@ public class TowerBuilder : MonoBehaviour
 
         currentTowerCount++;
         builderButtonText.text = "Build Tower : " + currentTowerCount + "/" + maxTowers;
+
+        TowerFeedback.Instance.TowerBuilder();
 
         StopBuilding();
     }
