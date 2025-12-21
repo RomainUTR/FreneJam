@@ -188,7 +188,27 @@ public class TowerBuilder : MonoBehaviour
     {
         if (selectedTurret != null)
         {
-            
+            if (selectedTurret.IsMaxLevel())
+            {
+                upgradeButton.interactable = false;
+				Debug.Log("Turret is at max level");
+                return;
+            }
+
+			if (Economy.gold >= towerUpgradeCost)
+            {
+                Economy.gold -= towerUpgradeCost;
+                UIManager.Instance.UpdateUI();
+
+                selectedTurret.UpgradeStats();
+				
+				tooltip.SetTarget(selectedTurret);
+
+                TowerFeedback.Instance.TowerBuilder();
+			} else
+            {
+                Debug.Log("Not enough gold to upgrade turret");
+			}
         }
-    }
+    } 
 }

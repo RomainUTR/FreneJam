@@ -105,4 +105,28 @@ public class Turret : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, turretRange);
     }
+    
+    public void UpgradeStats()
+    {
+        turretRange += 1f;
+        fireRate += 0.5f;
+
+        if (transform.localScale.x < 2f) 
+        {
+            transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+        } else
+        {
+            transform.localScale = new Vector3(2f, 2f, 2f);
+        }
+        
+        if(TowerFeedback.Instance != null)
+        {
+            TowerFeedback.Instance.TowerBuilder();
+        }
+    }
+
+    public bool IsMaxLevel()
+    {
+        return fireRate >= 5f;
+    }
 }

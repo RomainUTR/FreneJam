@@ -9,6 +9,7 @@ public class TowerTooltip : MonoBehaviour
     [SerializeField, Required] private TMP_Text upgradeCostText;
     [SerializeField, Required] private Button upgradeButton;
 
+    [SerializeField, Required] private TowerBuilder towerBuilder;
     private Turret target;
 
     private void Start()
@@ -45,6 +46,7 @@ public class TowerTooltip : MonoBehaviour
     {
         if (target != null)
         {
+            towerBuilder.UpgradeSelectedTurret();
             Debug.Log("Upgrade");
             Hide();
         }
