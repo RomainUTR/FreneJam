@@ -19,6 +19,8 @@ public class Turret : MonoBehaviour
 
     [TitleGroup("Visual")]
     [Required] public GameObject selectionRing;
+    [SerializeField, Required] private MMF_Player shootFeedback;
+    [Required] public MMF_Player upgradeFeedback;
 
     [TitleGroup("Bullet Settings")]
     [SerializeField, Range(0f, 5f)] private float fireRate = 1f;
@@ -91,7 +93,7 @@ public class Turret : MonoBehaviour
 
         AudioManager.Instance.PlayClipAt(canonSFX, firePoint.position);
 
-		TowerFeedback.Instance.TowerShoot();
+		shootFeedback.PlayFeedbacks();
     }
 
     public void SetSelected(bool isSelected)
@@ -123,9 +125,9 @@ public class Turret : MonoBehaviour
             transform.localScale = new Vector3(2f, 2f, 2f);
         }
         
-        if(TowerFeedback.Instance != null)
+        if(upgradeFeedback != null)
         {
-            TowerFeedback.Instance.TowerBuilder();
+            upgradeFeedback.PlayFeedbacks();
         }
     }
 

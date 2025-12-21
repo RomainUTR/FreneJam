@@ -5087,12 +5087,20 @@ PrefabInstance:
       value: SceneMusic
       objectReference: {fileID: 0}
     - target: {fileID: 1234170177727591266, guid: 7cf0d684b88ba6c44ae1c18fd3453901, type: 3}
+      propertyPath: playOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234170177727591266, guid: 7cf0d684b88ba6c44ae1c18fd3453901, type: 3}
       propertyPath: musicLayers.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1234170177727591266, guid: 7cf0d684b88ba6c44ae1c18fd3453901, type: 3}
+      propertyPath: musicLayers.Array.data[0].music
+      value: 
+      objectReference: {fileID: 11400000, guid: a1273b062e30c48fbba5b395aa0e1328, type: 2}
+    - target: {fileID: 1234170177727591266, guid: 7cf0d684b88ba6c44ae1c18fd3453901, type: 3}
       propertyPath: musicLayers.Array.data[0].localVolume
-      value: 1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8277518216330964169, guid: 7cf0d684b88ba6c44ae1c18fd3453901, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15126,7 +15134,6 @@ MonoBehaviour:
   maxTowers: 5
   gridOffset: {x: 0.5, y: 0, z: 0.5}
   towerCost: 30
-  towerUpgradeCost: 100
   mainCamera: {fileID: 1126418825}
   groundLayer:
     serializedVersion: 2
@@ -17242,7 +17249,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltip: {fileID: 1688119787}
   upgradeCostText: {fileID: 228124168}
+  titleUpgradeText: {fileID: 687174140}
   upgradeButton: {fileID: 1785880232}
+  towerBuilder: {fileID: 1605890260}
 --- !u!114 &1779835460
 MonoBehaviour:
   m_ObjectHideFlags: 0

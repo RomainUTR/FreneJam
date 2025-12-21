@@ -175,8 +175,6 @@ public class TowerBuilder : MonoBehaviour
         currentTowerCount++;
         builderButtonText.text = "Build Tower : " + currentTowerCount + "/" + maxTowers;
 
-        TowerFeedback.Instance.TowerBuilder();
-
         StopBuilding();
     }
 
@@ -204,8 +202,6 @@ public class TowerBuilder : MonoBehaviour
                 selectedTurret.UpgradeStats();
 				
 				tooltip.SetTarget(selectedTurret);
-
-                TowerFeedback.Instance.TowerBuilder();
 			} else
             {
                 Debug.Log("Not enough gold to upgrade turret");
