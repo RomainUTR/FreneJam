@@ -6,7 +6,7 @@ public class GameOverManager : MonoBehaviour
     {
         PlayerState.isAlive = true;
         Time.timeScale = 1f;
-        PlayerState.lives = 10;
+        PlayerState.lives = 20;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     

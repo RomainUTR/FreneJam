@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretLevel: 1
   turretPriceUpgrade: 100
-  turretRange: 4
+  turretRange: 5
   turnSpeed: 3
   enemyTag: Enemy
   partToRotate: {fileID: 6935911376128594112}
