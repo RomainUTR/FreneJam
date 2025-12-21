@@ -7,6 +7,7 @@ public class GameOverManager : MonoBehaviour
         PlayerState.isAlive = true;
         Time.timeScale = 1f;
         PlayerState.lives = 20;
+        Economy.gold = 30;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
