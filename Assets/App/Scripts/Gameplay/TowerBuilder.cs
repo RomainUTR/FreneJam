@@ -77,7 +77,9 @@ public class TowerBuilder : MonoBehaviour
                 Vector3 finalPosition = new Vector3(x, y, z);
                 currentGhost.transform.position = finalPosition;
 
-                if (Physics.CheckSphere(finalPosition + Vector3.up * 0.5f, 0.4f, obstacleLayer))
+				Vector3 boxSize = new Vector3(0.35f, 0.5f, 0.35f);
+
+                if (Physics.CheckBox(finalPosition + Vector3.up * 0.5f, boxSize, Quaternion.identity, obstacleLayer))
                 {
                     canBuildLocation = false;
                     UpdateGhostColor(invalidMaterial);
