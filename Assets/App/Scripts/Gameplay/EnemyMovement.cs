@@ -32,7 +32,20 @@ public class EnemyMovement : MonoBehaviour
             target = Waypoints.points[wavepointIndex];
         } else
         {
-            Destroy(gameObject);
+            if (PlayerState.lives <= 0)
+            {
+                Destroy(gameObject);
+                Debug.Log("Game Over!");
+                UIManager.Instance.GameOver();
+                Time.timeScale = 0f;
+                PlayerState.isAlive = false;
+            }
+            else
+            {
+                PlayerState.lives--;
+                UIManager.Instance.UpdateUI();
+                Destroy(gameObject);
+            }
         }
     }
 }

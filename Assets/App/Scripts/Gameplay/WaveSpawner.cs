@@ -23,13 +23,11 @@ public class WaveSpawner : MonoBehaviour
         }
 
         countdown -= Time.deltaTime;
-        Debug.Log("Vague dans : " + Mathf.Round(countdown));
     }
 
     IEnumerator SpawnWave()
     {
         waveIndex++;
-        Debug.Log("Vague " + waveIndex + " en approche !");
 
         for (int i = 0; i < waveIndex; i++)
         {

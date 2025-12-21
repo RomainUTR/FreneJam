@@ -42,7 +42,7 @@ public class TowerBuilder : MonoBehaviour
 
         currentGhost.SetActive(false);
         builderButton.interactable = false;
-        builderButtonText.text = "Build Tower : " + currentTowerCount + "/" + maxTowers;
+        builderButtonText.text = "Build Tower : " + currentTowerCount + "/" + maxTowers + " ($" + towerCost + ")";
     }
 
     void Update()
@@ -123,7 +123,6 @@ public class TowerBuilder : MonoBehaviour
                         selectedTurret.SetSelected(true);
 
                         tooltip.SetTarget(selectedTurret);
-                        Debug.Log("Selection : " + selectedTurret.name);
                     }
                 }
                 else
@@ -173,7 +172,7 @@ public class TowerBuilder : MonoBehaviour
         UIManager.Instance.UpdateUI();
 
         currentTowerCount++;
-        builderButtonText.text = "Build Tower : " + currentTowerCount + "/" + maxTowers;
+        builderButtonText.text = "Build Tower : " + currentTowerCount + "/" + maxTowers + " ($" + towerCost + ")";
 
         StopBuilding();
     }
@@ -190,7 +189,6 @@ public class TowerBuilder : MonoBehaviour
             if (selectedTurret.IsMaxLevel())
             {
                 upgradeButton.interactable = false;
-				Debug.Log("Turret is at max level");
                 return;
             }
 
@@ -202,9 +200,6 @@ public class TowerBuilder : MonoBehaviour
                 selectedTurret.UpgradeStats();
 				
 				tooltip.SetTarget(selectedTurret);
-			} else
-            {
-                Debug.Log("Not enough gold to upgrade turret");
 			}
         }
     } 

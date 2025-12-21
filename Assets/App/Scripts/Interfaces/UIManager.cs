@@ -5,6 +5,8 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField, Required] private TMP_Text goldText;
+    [SerializeField, Required] private TMP_Text heartText;
+    [SerializeField, Required] private GameObject gameOverPanel;
 
     public static UIManager Instance;
 
@@ -21,5 +23,11 @@ public class UIManager : MonoBehaviour
     public void UpdateUI()
     {
         goldText.text = Economy.gold.ToString();
+        heartText.text = PlayerState.lives.ToString();
+    }
+
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
     }
 }
