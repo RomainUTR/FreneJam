@@ -11,7 +11,6 @@ public class TowerBuilder : MonoBehaviour
     [SerializeField, Range(0,10)] private int maxTowers = 5;
     [SerializeField] private Vector3 gridOffset = new Vector3(0.5f, 0, 0.5f);
     [SerializeField, Range(0,100)] private int towerCost = 20;
-    [SerializeField, Range(0,100)] private int towerUpgradeCost = 100;
 
     [TabGroup("Configuration"), SerializeField, Required] private Camera mainCamera;
     [TabGroup("Configuration"), SerializeField, Required] private LayerMask groundLayer;
@@ -195,9 +194,9 @@ public class TowerBuilder : MonoBehaviour
                 return;
             }
 
-			if (Economy.gold >= towerUpgradeCost)
+			if (Economy.gold >= selectedTurret.turretPriceUpgrade)
             {
-                Economy.gold -= towerUpgradeCost;
+                Economy.gold -= selectedTurret.turretPriceUpgrade;
                 UIManager.Instance.UpdateUI();
 
                 selectedTurret.UpgradeStats();

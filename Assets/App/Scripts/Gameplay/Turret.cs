@@ -6,6 +6,8 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     [TitleGroup("Configuration")]
+	[ReadOnly] public int turretLevel = 1;
+    [ReadOnly] public int turretPriceUpgrade = 100;
     [SerializeField, Range(0f, 10f)] private float turretRange = 5f;
     [SerializeField, Range(0f, 50f)] private float turnSpeed = 5f;
 
@@ -16,7 +18,7 @@ public class Turret : MonoBehaviour
     [SerializeField, Required] private Transform firePoint;
 
     [TitleGroup("Visual")]
-    [SerializeField, Required] private GameObject selectionRing;
+    [Required] public GameObject selectionRing;
 
     [TitleGroup("Bullet Settings")]
     [SerializeField, Range(0f, 5f)] private float fireRate = 1f;
@@ -110,6 +112,8 @@ public class Turret : MonoBehaviour
     {
         turretRange += 1f;
         fireRate += 0.5f;
+		turretLevel++;
+		turretPriceUpgrade += 50;
 
         if (transform.localScale.x < 2f) 
         {

@@ -7,6 +7,7 @@ public class TowerTooltip : MonoBehaviour
 {
     [SerializeField, Required] private GameObject tooltip;
     [SerializeField, Required] private TMP_Text upgradeCostText;
+    [SerializeField, Required] private TMP_Text titleUpgradeText;
     [SerializeField, Required] private Button upgradeButton;
 
     [SerializeField, Required] private TowerBuilder towerBuilder;
@@ -20,26 +21,33 @@ public class TowerTooltip : MonoBehaviour
 
     private void Update()
     {
-        if (Economy.gold >= 100)
+        if (target != null)
         {
-            upgradeButton.interactable = true;
-        }
-        else
-        {
-            upgradeButton.interactable = false;
+            if (Economy.gold >= target.turretPriceUpgrade && !target.IsMaxLevel())
+        	{
+            	upgradeButton.interactable = true;
+        	}
+        	else
+        	{
+            	upgradeButton.interactable = false;
+        	}
         }
     }
+
     public void SetTarget(Turret _target)
     {
         target = _target;
         transform.position = target.transform.position;
-        upgradeCostText.text = "$" + "100";
+		titleUpgradeText.text = "Tower (Level " + (target.turretLevel).ToString() + ")";
+        upgradeCostText.text = "$" + target.turretPriceUpgrade.ToString();
         tooltip.SetActive(true);
     }
 
     public void Hide()
     {
         tooltip.SetActive(false);
+		target.selectionRing.SetActive(false);
+        target = null;
     }
 
     public void Upgrade()
